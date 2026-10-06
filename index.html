@@ -2,14 +2,11 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f4f0e8">
   <link rel="icon" type="image/png" href="./img/image.jpeg">
   <title>Yanni Serrour — Portfolio</title>
-  <meta
-    name="description"
-    content="Portfolio de Yanni Serrour, étudiant en Licence informatique et passionné par les données."
-  >
+  <meta name="description" content="Portfolio de Yanni Serrour, étudiant en informatique et passionné par les données.">
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
@@ -21,7 +18,6 @@
       --red: #f04432;
       --lime: #d5f260;
       --line: 2px solid var(--ink);
-      --shadow: 7px 7px 0 var(--ink);
       --content-width: 1120px;
     }
 
@@ -36,7 +32,7 @@
 
     body {
       margin: 0;
-      background-color: var(--paper);
+      background: var(--paper);
       color: var(--ink);
       font-family: "Space Grotesk", sans-serif;
       line-height: 1.55;
@@ -47,12 +43,14 @@
     }
 
     a:focus-visible,
-    button:focus-visible {
+    button:focus-visible,
+    .projects-track:focus-visible {
       outline: 3px dashed var(--red);
       outline-offset: 5px;
     }
 
-    .page {
+    .page,
+    .topbar-inner {
       width: min(calc(100% - 40px), var(--content-width));
       margin-inline: auto;
     }
@@ -66,9 +64,7 @@
     }
 
     .topbar-inner {
-      width: min(calc(100% - 40px), var(--content-width));
       min-height: 76px;
-      margin-inline: auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -78,16 +74,14 @@
     .nav {
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
-      gap: 6px 22px;
+      gap: 6px 20px;
     }
 
     .nav a {
       font-family: "DM Mono", monospace;
-      font-size: 0.76rem;
+      font-size: 0.75rem;
       text-decoration: none;
       text-transform: uppercase;
-      transition: color 160ms ease;
     }
 
     .nav a:hover {
@@ -111,37 +105,20 @@
     }
 
     .hero {
-      min-height: 530px;
-      padding-block: 90px 75px;
+      min-height: 500px;
+      padding-block: 80px 70px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: flex-start;
       border-bottom: var(--line);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::after {
-      content: "DATA / CODE / IDEAS";
-      position: absolute;
-      right: -12px;
-      bottom: 54px;
-      color: transparent;
-      -webkit-text-stroke: 1px var(--ink);
-      font-family: "DM Mono", monospace;
-      font-size: clamp(1rem, 3vw, 1.7rem);
-      letter-spacing: 0.1em;
-      transform: rotate(-90deg) translateX(100%);
-      transform-origin: right bottom;
-      opacity: 0.45;
     }
 
     .eyebrow,
     .section-kicker {
       margin: 0 0 14px;
       font-family: "DM Mono", monospace;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
@@ -161,32 +138,27 @@
     }
 
     .hero-subtitle {
+      max-width: min(760px, 100%);
       margin: 26px 0 0;
       padding: 8px 13px;
       border: var(--line);
       background: var(--lime);
       box-shadow: 4px 4px 0 var(--ink);
       font-family: "DM Mono", monospace;
-      font-size: clamp(0.9rem, 2vw, 1.15rem);
+      font-size: clamp(0.78rem, 1.8vw, 1rem);
+      line-height: 1.5;
       text-transform: uppercase;
       transform: rotate(-1deg);
     }
 
-    .hero-note {
-      max-width: 430px;
-      margin: 34px 0 0;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
     .section {
-      padding-block: 88px;
+      padding-block: 82px;
       border-bottom: var(--line);
     }
 
     .section-heading {
-      margin: 0 0 30px;
-      font-size: clamp(2.6rem, 7vw, 5.3rem);
+      margin: 0 0 28px;
+      font-size: clamp(2.6rem, 7vw, 5rem);
       line-height: 0.95;
       letter-spacing: -0.075em;
       text-transform: uppercase;
@@ -196,9 +168,9 @@
       max-width: 800px;
       padding: clamp(22px, 5vw, 42px);
       border: var(--line);
-      background: white;
-      box-shadow: var(--shadow);
-      font-size: clamp(1.05rem, 2.4vw, 1.4rem);
+      background: #fff;
+      box-shadow: 7px 7px 0 var(--ink);
+      font-size: clamp(1.05rem, 2.4vw, 1.35rem);
     }
 
     .about-card p {
@@ -237,8 +209,7 @@
 
     .education-title {
       margin: 0;
-      font-size: clamp(1.1rem, 2.4vw, 1.5rem);
-      font-weight: 600;
+      font-size: clamp(1.1rem, 2.4vw, 1.45rem);
     }
 
     .education-detail {
@@ -246,119 +217,316 @@
       color: var(--muted);
     }
 
-    .learning-intro {
-      max-width: 600px;
-      margin: -12px 0 36px;
+    /* Carte du parcours */
+    .map-intro {
+      max-width: 620px;
+      margin: -10px 0 28px;
       color: var(--muted);
     }
 
-    .journey {
+    .map-board {
       position: relative;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 12px 0;
+      min-height: 455px;
+      overflow: hidden;
+      border: var(--line);
+      background-color: #ebe7dd;
+      background-image: radial-gradient(#c6c1b6 1px, transparent 1px);
+      background-size: 18px 18px;
+      box-shadow: 7px 7px 0 var(--ink);
     }
 
-    .journey-track {
+    .map-stamp {
+      position: absolute;
+      z-index: 2;
+      top: 14px;
+      right: 14px;
+      padding: 5px 8px;
+      border: 1px solid var(--ink);
+      background: var(--lime);
+      font-family: "DM Mono", monospace;
+      font-size: 0.66rem;
+      text-transform: uppercase;
+      transform: rotate(2deg);
+    }
+
+    .map-road {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
-      overflow: visible;
       pointer-events: none;
     }
 
-    .journey-track path {
+    .map-road-mobile {
+      display: none;
+    }
+
+    .road-base {
       fill: none;
       stroke: var(--ink);
-      stroke-width: 4;
-      stroke-linecap: square;
-      stroke-dasharray: 8 10;
+      stroke-width: 22;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
-    .journey-track .completed-line {
+    .road-center {
+      fill: none;
+      stroke: var(--paper);
+      stroke-width: 3;
+      stroke-dasharray: 5 11;
+      stroke-linecap: round;
+    }
+
+    .road-progress {
+      fill: none;
       stroke: var(--red);
-      stroke-dasharray: none;
-      stroke-width: 6;
+      stroke-width: 7;
+      stroke-linecap: round;
     }
 
-    .journey-steps {
+    .map-stops {
       position: relative;
+      z-index: 1;
+      min-height: 455px;
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 18px;
     }
 
-    .step {
-      min-height: 290px;
+    .map-stop {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
       text-align: center;
     }
 
-    .step:nth-child(even) {
-      padding-top: 116px;
+    .map-stop:nth-child(odd) {
+      padding-top: 56px;
     }
 
-    .step-marker {
-      width: 54px;
-      height: 54px;
-      margin-bottom: 15px;
+    .map-stop:nth-child(even) {
+      padding-top: 271px;
+    }
+
+    .stop-marker {
+      width: 58px;
+      height: 58px;
+      flex: 0 0 auto;
       display: grid;
       place-items: center;
       border: 3px solid var(--ink);
       border-radius: 50%;
       background: var(--paper);
+      box-shadow: 0 0 0 5px #ebe7dd;
       font-family: "DM Mono", monospace;
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 500;
-      position: relative;
-      z-index: 1;
     }
 
-    .step.completed .step-marker {
+    .map-stop.completed .stop-marker {
       background: var(--red);
       color: white;
     }
 
-    .step.current .step-marker {
+    .map-stop.current .stop-marker {
       background: var(--lime);
-      box-shadow: 0 0 0 7px var(--paper), 0 0 0 9px var(--ink);
-      animation: pulse 1.8s ease-in-out infinite;
+      box-shadow: 0 0 0 5px #ebe7dd, 0 0 0 8px var(--ink);
+      animation: map-pulse 1.8s ease-in-out infinite;
     }
 
-    .step.future .step-marker {
+    .map-stop.future .stop-marker {
       border-style: dashed;
       color: var(--muted);
     }
 
-    .step h3 {
-      max-width: 140px;
-      margin: 0;
-      font-size: clamp(0.9rem, 2vw, 1.1rem);
-      line-height: 1.15;
-      text-transform: uppercase;
+    .stop-card {
+      width: min(170px, 92%);
+      margin-top: 14px;
+      padding: 10px 9px;
+      border: 1px solid var(--ink);
+      background: var(--paper);
+      box-shadow: 3px 3px 0 var(--ink);
     }
 
-    .step-tag {
-      margin-top: 10px;
-      padding: 3px 7px;
-      border: 1px solid var(--ink);
-      background: var(--lime);
+    .stop-number {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--red);
       font-family: "DM Mono", monospace;
       font-size: 0.65rem;
+    }
+
+    .stop-card h3 {
+      margin: 0;
+      font-size: clamp(0.76rem, 1.2vw, 0.95rem);
+      line-height: 1.2;
       text-transform: uppercase;
     }
 
-    .contact-section {
-      padding-bottom: 100px;
+    .map-legend {
+      position: absolute;
+      z-index: 2;
+      bottom: 12px;
+      left: 14px;
+      display: flex;
+      gap: 9px;
+      align-items: center;
     }
 
+    .legend-dot {
+      width: 15px;
+      height: 15px;
+      display: block;
+      border: 2px solid var(--ink);
+      border-radius: 50%;
+      background: var(--paper);
+    }
+
+    .legend-dot.done {
+      background: var(--red);
+    }
+
+    .legend-dot.active {
+      background: var(--lime);
+    }
+
+    .legend-dot.next {
+      border-style: dashed;
+    }
+
+    @keyframes map-pulse {
+      50% {
+        box-shadow: 0 0 0 8px #ebe7dd, 0 0 0 11px var(--ink);
+      }
+    }
+
+    /* Projets */
+    .projects-intro {
+      max-width: 620px;
+      margin: -10px 0 25px;
+      color: var(--muted);
+    }
+
+    .projects-controls {
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 9px;
+    }
+
+    .carousel-button {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border: var(--line);
+      background: var(--lime);
+      box-shadow: 3px 3px 0 var(--ink);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: transform 150ms ease, box-shadow 150ms ease;
+    }
+
+    .carousel-button:hover:not(:disabled) {
+      box-shadow: 1px 1px 0 var(--ink);
+      transform: translate(2px, 2px);
+    }
+
+    .carousel-button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .projects-track {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      padding: 4px 4px 16px;
+      scroll-snap-type: x mandatory;
+      scrollbar-color: var(--red) #ded9cf;
+      scrollbar-width: thin;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-x;
+    }
+
+    .project-card {
+      min-width: 0;
+      flex: 0 0 calc(50% - 9px);
+      min-height: 265px;
+      padding: 21px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      border: var(--line);
+      background: #fff;
+      box-shadow: 5px 5px 0 var(--ink);
+      scroll-snap-align: start;
+    }
+
+    .project-topline {
+      width: 100%;
+      margin-bottom: 23px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .project-index {
+      font-family: "DM Mono", monospace;
+      font-size: 0.72rem;
+    }
+
+    .project-status {
+      padding: 4px 8px;
+      border: 1px solid var(--ink);
+      font-family: "DM Mono", monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .status-done {
+      background: var(--lime);
+    }
+
+    .status-progress {
+      background: #ffd266;
+    }
+
+    .status-upcoming {
+      background: #e8e5de;
+    }
+
+    .project-card h3 {
+      margin: 0 0 10px;
+      font-size: clamp(1.15rem, 2.1vw, 1.5rem);
+      line-height: 1.1;
+    }
+
+    .project-card p {
+      margin: 0 0 22px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .project-link {
+      margin-top: auto;
+      padding-bottom: 3px;
+      border-bottom: 2px solid var(--red);
+      font-family: "DM Mono", monospace;
+      font-size: 0.76rem;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .project-link:hover {
+      color: var(--red);
+    }
+
+    /* Contact */
     .contact-intro {
       max-width: 560px;
-      margin: -12px 0 32px;
+      margin: -10px 0 28px;
       color: var(--muted);
     }
 
@@ -369,13 +537,13 @@
     }
 
     .contact-card {
-      min-height: 105px;
-      padding: 19px;
+      min-height: 100px;
+      padding: 18px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       border: var(--line);
-      background: white;
+      background: #fff;
       box-shadow: 4px 4px 0 var(--ink);
       text-decoration: none;
       overflow-wrap: anywhere;
@@ -395,9 +563,13 @@
     }
 
     .contact-value {
-      margin-top: 12px;
-      font-size: clamp(0.98rem, 2vw, 1.2rem);
+      margin-top: 10px;
+      font-size: clamp(0.98rem, 2vw, 1.15rem);
       font-weight: 600;
+    }
+
+    .contact-section {
+      padding-bottom: 90px;
     }
 
     footer {
@@ -410,13 +582,7 @@
       text-transform: uppercase;
     }
 
-    @keyframes pulse {
-      50% {
-        box-shadow: 0 0 0 10px var(--paper), 0 0 0 12px var(--ink);
-      }
-    }
-
-    @media (max-width: 650px) {
+    @media (max-width: 700px) {
       .page,
       .topbar-inner {
         width: min(calc(100% - 28px), var(--content-width));
@@ -428,11 +594,11 @@
       }
 
       .nav {
-        gap: 5px 12px;
+        gap: 5px 11px;
       }
 
       .nav a {
-        font-size: 0.65rem;
+        font-size: 0.63rem;
       }
 
       .monogram {
@@ -441,59 +607,89 @@
       }
 
       .hero {
-        min-height: 440px;
-        padding-block: 70px 60px;
-      }
-
-      .hero::after {
-        display: none;
+        min-height: 420px;
+        padding-block: 65px 55px;
       }
 
       .section {
-        padding-block: 65px;
+        padding-block: 62px;
       }
 
       .education-item {
-        grid-template-columns: 75px 1fr;
+        grid-template-columns: 72px 1fr;
         gap: 12px;
       }
 
-      .journey {
-        padding-left: 5px;
+      /* La carte devient une route verticale sur mobile */
+      .map-board {
+        min-height: auto;
       }
 
-      .journey-track {
-        left: 28px;
-        width: 70px;
+      .map-road-desktop {
+        display: none;
+      }
+
+      .map-road-mobile {
+        position: absolute;
+        top: 0;
+        left: 8px;
+        display: block;
+        width: 64px;
         height: 100%;
       }
 
-      .journey-steps {
+      .map-stops {
+        min-height: 0;
+        padding: 26px 14px 50px 18px;
+        display: grid;
         grid-template-columns: 1fr;
-        gap: 0;
+        gap: 13px;
       }
 
-      .step,
-      .step:nth-child(even) {
-        min-height: 104px;
+      .map-stop,
+      .map-stop:nth-child(odd),
+      .map-stop:nth-child(even) {
+        min-height: 92px;
         padding: 0;
-        flex-direction: row;
-        justify-content: flex-start;
-        gap: 18px;
+        display: grid;
+        grid-template-columns: 58px 1fr;
+        align-items: center;
+        gap: 14px;
         text-align: left;
       }
 
-      .step-marker {
-        flex: 0 0 54px;
+      .stop-marker {
+        grid-column: 1;
+        grid-row: 1;
+      }
+
+      .stop-card {
+        width: 100%;
         margin: 0;
+        padding: 11px 12px;
       }
 
-      .step h3 {
-        max-width: none;
+      .map-stamp {
+        top: 9px;
+        right: 9px;
+        font-size: 0.58rem;
       }
 
-      .step-tag {
-        margin: 0 0 0 auto;
+      .map-legend {
+        bottom: 11px;
+        left: 16px;
+      }
+
+      .projects-track {
+        gap: 14px;
+        margin-right: -14px;
+        padding-right: 18px;
+      }
+
+      .project-card {
+        flex-basis: min(86%, 390px);
+        min-height: 250px;
+        padding: 18px;
       }
 
       .contact-grid {
@@ -525,6 +721,7 @@
         <a href="#about">À propos</a>
         <a href="#education">Éducation</a>
         <a href="#objectifs">Objectifs</a>
+        <a href="#projets">Projets</a>
         <a href="#contact">Contact</a>
       </nav>
 
@@ -536,15 +733,14 @@
     <section class="hero page" id="accueil" aria-labelledby="hero-title">
       <p class="eyebrow">Portfolio · Étudiant en informatique</p>
       <h1 id="hero-title">Yanni <span>Serrour</span></h1>
-      <p class="hero-subtitle">Licence informatique</p>
-      <p class="hero-note">
-        Étudiant à l’UMMTO, curieux du numérique et passionné par les données.
+      <p class="hero-subtitle">
+        Mathématique informatique filière informatique spécialité systèmes informatique
       </p>
     </section>
 
     <section class="section page" id="about" aria-labelledby="about-title">
-      <p class="section-kicker">01 / À propos</p>
-      <h2 class="section-heading" id="about-title">About me</h2>
+      <p class="section-kicker">01 / Présentation</p>
+      <h2 class="section-heading" id="about-title">À propos de moi</h2>
 
       <div class="about-card">
         <p>
@@ -565,7 +761,7 @@
           <span class="education-year">2023</span>
           <div>
             <h3 class="education-title">Baccalauréat en mathématiques</h3>
-            <p class="education-detail">Une première étape construite autour du raisonnement et des sciences.</p>
+            <p class="education-detail">Mention assez bien</p>
           </div>
         </li>
         <li class="education-item">
@@ -579,50 +775,155 @@
     </section>
 
     <section class="section page" id="objectifs" aria-labelledby="objectifs-title">
-      <p class="section-kicker">03 / La suite</p>
+      <p class="section-kicker">03 / Parcours d’apprentissage</p>
       <h2 class="section-heading" id="objectifs-title">Objectifs</h2>
-      <p class="learning-intro">
-        Un parcours d’apprentissage tourné vers les technologies de la donnée.
+      <p class="map-intro">
+        Un itinéraire vers les domaines de la donnée, balisé étape par étape.
       </p>
 
-      <div class="journey" aria-label="Chemin d’apprentissage en cinq étapes">
-        <svg class="journey-track" viewBox="0 0 900 300" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M90 45 L270 175 L450 45 L630 175 L810 45"></path>
-          <path class="completed-line" d="M90 45 L270 175"></path>
+      <div class="map-board" aria-label="Carte du parcours d’apprentissage">
+        <span class="map-stamp">Carte du parcours · YS</span>
+
+        <svg class="map-road map-road-desktop" viewBox="0 0 1000 455" preserveAspectRatio="none" aria-hidden="true">
+          <path class="road-base" d="M100 85 C170 85 220 300 300 300 S420 85 500 85 S620 300 700 300 S830 85 900 85"></path>
+          <path class="road-center" d="M100 85 C170 85 220 300 300 300 S420 85 500 85 S620 300 700 300 S830 85 900 85"></path>
+          <path class="road-progress" d="M100 85 C170 85 220 300 300 300"></path>
         </svg>
 
-        <div class="journey-steps">
-          <article class="step completed">
-            <span class="step-marker" aria-hidden="true">✓</span>
-            <h3>Bases de données</h3>
+        <svg class="map-road map-road-mobile" viewBox="0 0 70 600" preserveAspectRatio="none" aria-hidden="true">
+          <path class="road-base" d="M35 48 L35 555"></path>
+          <path class="road-center" d="M35 48 L35 555"></path>
+          <path class="road-progress" d="M35 48 L35 155"></path>
+        </svg>
+
+        <div class="map-stops">
+          <article class="map-stop completed">
+            <span class="stop-marker" aria-hidden="true">✓</span>
+            <div class="stop-card">
+              <span class="stop-number">ÉTAPE 01</span>
+              <h3>Bases de données</h3>
+            </div>
           </article>
 
-          <article class="step current">
-            <span class="step-marker" aria-hidden="true">02</span>
-            <h3>Big Data</h3>
-            <span class="step-tag">Focus</span>
+          <article class="map-stop current">
+            <span class="stop-marker" aria-hidden="true">02</span>
+            <div class="stop-card">
+              <span class="stop-number">ÉTAPE 02</span>
+              <h3>Big Data</h3>
+            </div>
           </article>
 
-          <article class="step future">
-            <span class="step-marker" aria-hidden="true">03</span>
-            <h3>Data Analytics</h3>
+          <article class="map-stop future">
+            <span class="stop-marker" aria-hidden="true">03</span>
+            <div class="stop-card">
+              <span class="stop-number">ÉTAPE 03</span>
+              <h3>Data Analytics</h3>
+            </div>
           </article>
 
-          <article class="step future">
-            <span class="step-marker" aria-hidden="true">04</span>
-            <h3>Data Science</h3>
+          <article class="map-stop future">
+            <span class="stop-marker" aria-hidden="true">04</span>
+            <div class="stop-card">
+              <span class="stop-number">ÉTAPE 04</span>
+              <h3>Data Science</h3>
+            </div>
           </article>
 
-          <article class="step future">
-            <span class="step-marker" aria-hidden="true">05</span>
-            <h3>Intelligence artificielle</h3>
+          <article class="map-stop future">
+            <span class="stop-marker" aria-hidden="true">05</span>
+            <div class="stop-card">
+              <span class="stop-number">ÉTAPE 05</span>
+              <h3>Intelligence artificielle</h3>
+            </div>
           </article>
+        </div>
+
+        <div class="map-legend" aria-hidden="true">
+          <span class="legend-dot done"></span>
+          <span class="legend-dot active"></span>
+          <span class="legend-dot next"></span>
         </div>
       </div>
     </section>
 
+    <section class="section page" id="projets" aria-labelledby="projets-title">
+      <p class="section-kicker">04 / Sélection GitHub</p>
+      <h2 class="section-heading" id="projets-title">Projets</h2>
+      <p class="projects-intro">
+        Quelques projets terminés autour de l’analyse de données et de Python.
+        Fais défiler les cartes pour tous les découvrir.
+      </p>
+
+      <div class="projects-controls" aria-label="Commandes du carrousel de projets">
+        <button class="carousel-button" type="button" data-direction="-1" aria-label="Projet précédent">←</button>
+        <button class="carousel-button" type="button" data-direction="1" aria-label="Projet suivant">→</button>
+      </div>
+
+      <div
+        class="projects-track"
+        id="projects-track"
+        tabindex="0"
+        role="region"
+        aria-label="Projets GitHub, défilement horizontal"
+      >
+        <article class="project-card">
+          <div class="project-topline">
+            <span class="project-index">PROJET / 01</span>
+            <span class="project-status status-done">Terminé</span>
+          </div>
+          <h3>Analyse des trafics maritimes</h3>
+          <p>
+            Exploration de données de bateaux : positions géographiques,
+            évolutions temporelles et déplacements entre observations.
+          </p>
+          <a
+            class="project-link"
+            href="https://github.com/Yanniserrour/Analyse-des-trafics-maritimes"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Voir sur GitHub ↗</a>
+        </article>
+
+        <article class="project-card">
+          <div class="project-topline">
+            <span class="project-index">PROJET / 02</span>
+            <span class="project-status status-done">Terminé</span>
+          </div>
+          <h3>Analyse de playlists musicales</h3>
+          <p>
+            Projet Python autour de la discographie de Pink Floyd :
+            gestion de titres, durées et playlists à partir de données CSV.
+          </p>
+          <a
+            class="project-link"
+            href="https://github.com/Yanniserrour/Analyse_de_playlists_musicales"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Voir sur GitHub ↗</a>
+        </article>
+
+        <article class="project-card">
+          <div class="project-topline">
+            <span class="project-index">PROJET / 03</span>
+            <span class="project-status status-done">Terminé</span>
+          </div>
+          <h3>Analyse des prénoms en France</h3>
+          <p>
+            Traitement de données de prénoms pour étudier leur fréquence,
+            leur rareté et leur évolution au fil du temps.
+          </p>
+          <a
+            class="project-link"
+            href="https://github.com/Yanniserrour/Analyse_des_prenoms_donnees_en_France"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Voir sur GitHub ↗</a>
+        </article>
+      </div>
+    </section>
+
     <section class="section page contact-section" id="contact" aria-labelledby="contact-title">
-      <p class="section-kicker">04 / Parlons ensemble</p>
+      <p class="section-kicker">05 / Parlons ensemble</p>
       <h2 class="section-heading" id="contact-title">Contactez-moi</h2>
       <p class="contact-intro">
         Une question, une idée ou un projet autour de l’informatique et des données ?
@@ -670,6 +971,38 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    const track = document.getElementById("projects-track");
+    const carouselButtons = document.querySelectorAll(".carousel-button");
+
+    function updateCarouselButtons() {
+      const maxScroll = track.scrollWidth - track.clientWidth;
+
+      carouselButtons.forEach((button) => {
+        const direction = Number(button.dataset.direction);
+        button.disabled = direction < 0
+          ? track.scrollLeft <= 2
+          : track.scrollLeft >= maxScroll - 2;
+      });
+    }
+
+    carouselButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const firstCard = track.querySelector(".project-card");
+        const cardWidth = firstCard.getBoundingClientRect().width;
+        const gap = parseFloat(getComputedStyle(track).gap) || 0;
+        const direction = Number(button.dataset.direction);
+
+        track.scrollBy({
+          left: direction * (cardWidth + gap),
+          behavior: "smooth"
+        });
+      });
+    });
+
+    track.addEventListener("scroll", updateCarouselButtons, { passive: true });
+    window.addEventListener("resize", updateCarouselButtons);
+    updateCarouselButtons();
   </script>
 </body>
 </html>
